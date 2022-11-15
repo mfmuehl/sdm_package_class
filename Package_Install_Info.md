@@ -2,7 +2,7 @@
 
 Please start by downloading the sdm package:
 
-install.packages(‘sdm’)
+    install.packages('sdm')
 
 Several other packages will also need to be installed (for model fitting
 and evaluation). There is a function in the sdm package that will
