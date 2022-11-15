@@ -8,13 +8,9 @@ Several other packages will also need to be installed (for model fitting
 and evaluation). There is a function in the sdm package that will
 install all of them at once for you:
 
-    library(sdm)
-
     ## Loading required package: sp
 
     ## sdm 1.1-8 (2021-11-11)
-
-    installAll()
 
     ## 
     ##  All required packages have been already installed!
