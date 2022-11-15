@@ -2,7 +2,7 @@
 title: "test"
 author: "Madison Muehl"
 date: "2022-11-15"
-output: html_document
+output: md_document
 ---
 
 ```{r setup, include=FALSE}
