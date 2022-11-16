@@ -4,3 +4,4 @@
 .Ruserdata
 *.Rmd
 data_folder/
+*.png
