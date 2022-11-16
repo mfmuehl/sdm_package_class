@@ -6,11 +6,6 @@ package(s):
     library(rgdal)
     library(sf)
 
-Remember to set your working directory! Below is set up to work out of
-the Archive folder in my desktop
-
-    #setwd("~/Desktop/Archive")
-
 Read in the file
 
     bc.PA.shp <-  read_sf("data_folder/Points/Crab_sim.shp")
@@ -56,12 +51,12 @@ pseudo-absence data as two different colors
 
     plot(Blue_crabs)
 
-![](sdm_activity_bluecrabs_files/figure-markdown_strict/unnamed-chunk-6-1.png)
+![](sdm_activity_bluecrabs_files/figure-markdown_strict/unnamed-chunk-5-1.png)
 
     plot(Blue_crabs[Blue_crabs$BC_Occurre == 1,], col='blue', pch=16)
     points(Blue_crabs[Blue_crabs$BC_Occurre == 0,], col = 'red', pch=16)
 
-![](sdm_activity_bluecrabs_files/figure-markdown_strict/unnamed-chunk-6-2.png)
+![](sdm_activity_bluecrabs_files/figure-markdown_strict/unnamed-chunk-5-2.png)
 
 Now we can load in all of the data for our predictor variables. This
 includes: temperature, pH, salinity, and dissolved oxygen. The raster()
@@ -78,19 +73,19 @@ they’re correct by plotting them one at a time.
 
     plot(temperature)
 
-![](sdm_activity_bluecrabs_files/figure-markdown_strict/unnamed-chunk-7-1.png)
+![](sdm_activity_bluecrabs_files/figure-markdown_strict/unnamed-chunk-6-1.png)
 
     plot(DO)
 
-![](sdm_activity_bluecrabs_files/figure-markdown_strict/unnamed-chunk-7-2.png)
+![](sdm_activity_bluecrabs_files/figure-markdown_strict/unnamed-chunk-6-2.png)
 
     plot(pH)
 
-![](sdm_activity_bluecrabs_files/figure-markdown_strict/unnamed-chunk-7-3.png)
+![](sdm_activity_bluecrabs_files/figure-markdown_strict/unnamed-chunk-6-3.png)
 
     plot(salinity)
 
-![](sdm_activity_bluecrabs_files/figure-markdown_strict/unnamed-chunk-7-4.png)
+![](sdm_activity_bluecrabs_files/figure-markdown_strict/unnamed-chunk-6-4.png)
 
 Great! Now we want to stack them into a multi-layered RasterStack. We
 can do this using the stack() function with the list() function nested
@@ -103,11 +98,11 @@ RasterStack. You can also pull out one raster and take a closer look.
 
     plot(preds)
 
-![](sdm_activity_bluecrabs_files/figure-markdown_strict/unnamed-chunk-8-1.png)
+![](sdm_activity_bluecrabs_files/figure-markdown_strict/unnamed-chunk-7-1.png)
 
     plot(preds[[4]])
 
-![](sdm_activity_bluecrabs_files/figure-markdown_strict/unnamed-chunk-8-2.png)
+![](sdm_activity_bluecrabs_files/figure-markdown_strict/unnamed-chunk-7-2.png)
 
 Create object with specified train dataset and specify predictors you
 care about. This is considered a data “pre-processing” step. Let’s
@@ -276,7 +271,7 @@ classifying methods. These show the trade-offs between the sensitivity
 
     roc(model_2)
 
-![](sdm_activity_bluecrabs_files/figure-markdown_strict/unnamed-chunk-14-1.png)
+![](sdm_activity_bluecrabs_files/figure-markdown_strict/unnamed-chunk-13-1.png)
 
 # Let’s predict!
 
@@ -295,7 +290,7 @@ classifying methods. These show the trade-offs between the sensitivity
     # There are 6
     plot(predict_2[[1:6]])
 
-![](sdm_activity_bluecrabs_files/figure-markdown_strict/unnamed-chunk-15-1.png)
+![](sdm_activity_bluecrabs_files/figure-markdown_strict/unnamed-chunk-14-1.png)
 
 Take the mean of raster over different runs for each method and species.
 Then plot the predictions. It should produce three figures.
@@ -310,7 +305,7 @@ Then plot the predictions. It should produce three figures.
 
     plot(predict_2_mean)
 
-![](sdm_activity_bluecrabs_files/figure-markdown_strict/unnamed-chunk-16-1.png)
+![](sdm_activity_bluecrabs_files/figure-markdown_strict/unnamed-chunk-15-1.png)
 
 If you want to pull out the results of one classifying algorithm and
 take a closer look, you can. Let’s take a look and see how the predicted
@@ -319,4 +314,4 @@ results compare to the orginal presence data points.
     plot(predict_2_mean[["sp_1.m_rf.re_subs"]])
     points(Blue_crabs[Blue_crabs$BC_Occurre == 1,], col='blue', pch=16)
 
-![](sdm_activity_bluecrabs_files/figure-markdown_strict/unnamed-chunk-17-1.png)
+![](sdm_activity_bluecrabs_files/figure-markdown_strict/unnamed-chunk-16-1.png)
